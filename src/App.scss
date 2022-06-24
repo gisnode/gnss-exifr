@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    font-size: 12px;
+
+    user-select: none;
+    font-family: 'Lucida Sans Condensed';
+}
+
+html, body {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+body {
+    width: 96vw;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+#approot {
+    position: absolute;
+    text-align: center;
+    color: #2c3e50;
+
+    z-index: 1;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-family: 'Lucida Calligraphy';
+    font-size: 25px;
+    text-shadow: 4px 4px rgba(255, 0, 0, 0.2);
+
+    -webkit-app-region: drag;
+}
+
+.imgsbtn, .csvbtn {
+    padding: 6px;
+
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+
+    &:active {
+        background-color: rgba(187, 38, 207, 0.486);
+    }
+
+    &:disabled {
+        background-color: rgba(69, 65, 70, 0.486);
+    }
+}
+
+.imgsbtn {
+    background-color: rgba(207, 148, 38, 0.726);
+}
+
+.csvbtn {
+    background-color: rgba(121, 147, 17, 0.726);
+}
+
+.xifbtn, .xitbtn {
+    padding: 4px;
+
+    margin: 6px;
+    border: none;
+    color: white;
+    border-radius: 2px;
+
+    &:active {
+        background-color: rgba(187, 38, 207, 0.486);
+    }
+
+    &:disabled {
+        background-color: rgba(69, 65, 70, 0.486);
+    }
+}
+
+.xifbtn {
+    background-color: rgba(38, 86, 207, 0.726);
+}
+
+.xitbtn {
+    background-color: rgba(213, 40, 40, 0.726);
+}
+
+.infomsg {
+    color: rgba(40, 65, 207, 0.596);
+}
+
+.actionmsg {
+    color: rgba(207, 39, 190, 0.632);
+}
