@@ -1,4 +1,4 @@
-.<template>
+<template>
   <div id="approot">
     <div class="title">GNSS EXIFR</div><br>
     <div class="actions">
