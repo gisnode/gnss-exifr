@@ -28,8 +28,8 @@ async function createWindow() {
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
       // devTools: false
     },
-    // frame: false,
-    // resizable: false
+    frame: false,
+    resizable: false
   })
 
   win.setMenu(null);

@@ -1,4 +1,4 @@
-# exifr
+# GNSS EXIFR
 
 ## Project setup
 ```
@@ -13,6 +13,7 @@ yarn serve
 ### Compiles and minifies for production
 ```
 yarn build
+yarn buildportable
 ```
 
 ### Customize configuration
