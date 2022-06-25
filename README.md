@@ -7,7 +7,11 @@
 Download From
 https://github.com/gisnode/gnss-exifr/releases/download/add-replace-remove/exifr.1.0.0.exe
 
-## Development uses Vue Framework and Electron-Builder
+## Development uses:
+```
+Core: Exiv2 - Image Metadata Library (https://exiv2.org)
+Package: Vue Framework and Electron-Builder
+```
 
 ### Install Modules for Development
 ```
