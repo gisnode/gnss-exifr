@@ -2,13 +2,13 @@
   <div id="approot">
     <div class="title">GNSS EXIFR</div><br>
     <div class="actions">
-      <input type="radio" value="0" v-model="action" >
+      <input type="radio" value="0" v-model="action" v-bind:disabled="exifing">
       <label>Remove</label>
 
-      <input type="radio" value="1" v-model="action" checked>
+      <input type="radio" value="1" v-model="action" v-bind:disabled="exifing" checked>
       <label>Add / Replace</label>
 
-      <input type="radio" value="2" v-model="action" >
+      <input type="radio" value="2" v-model="action" v-bind:disabled="exifing">
       <label>Export</label>
     </div>
 
@@ -424,45 +424,50 @@ export default defineComponent({
       });
 
       let csvContent = [];
-      let noGPSInfo = [];
+      let noGPSInfo: any = [];
       for (let i = 0; i < jpgimgs.length; i++){
-        let cmdLon = `"${execPath.value}" -K Exif.GPSInfo.GPSLongitude -Pv "${path.join(imagesdir.value, jpgimgs[i])}"`;
-        let cmdLat = `"${execPath.value}" -K Exif.GPSInfo.GPSLatitude -Pv "${path.join(imagesdir.value, jpgimgs[i])}"`;
-        let cmdAlt = `"${execPath.value}" -K Exif.GPSInfo.GPSAltitude -Pv "${path.join(imagesdir.value, jpgimgs[i])}"`;
-        // console.log(cmd);
+        let cmdCLI = `"${execPath.value}" -K Exif.GPSInfo.GPSLongitude -K Exif.GPSInfo.GPSLatitude -K Exif.GPSInfo.GPSAltitude`;
+        cmdCLI += ` -Pv "${path.join(imagesdir.value, jpgimgs[i])}"`;
+        // console.log(cmdCLI);
+        
         try {
-          const gpsLonParts = execSync(cmdLon).toString().replace(/\s\s+/g, ' ').trim().split(' ');
+          let gnssInfoParts = execSync(cmdCLI).toString().split('\r\n');
+          // console.log(gnssInfoParts);
+
+          const gpsLonParts = gnssInfoParts[1].replace(/\s\s+/g, ' ').trim().split(' ');
           let gpsLonD = parseInt(gpsLonParts[0].split('/')[0]) / parseInt(gpsLonParts[0].split('/')[1]);
           let gpsLonM = parseInt(gpsLonParts[1].split('/')[0]) / parseInt(gpsLonParts[1].split('/')[1]);
           let gpsLonS = parseInt(gpsLonParts[2].split('/')[0]) / parseInt(gpsLonParts[2].split('/')[1]);
           let gpsLon = gpsLonD + gpsLonM / 60 + gpsLonS / 3600;
           // console.log(gpsLonParts, gpsLonD, gpsLonM, gpsLonS);
 
-          const gpsLatParts = execSync(cmdLat).toString().replace(/\s\s+/g, ' ').trim().split(' ');
+          const gpsLatParts = gnssInfoParts[0].replace(/\s\s+/g, ' ').trim().split(' ');
           let gpsLatD = parseInt(gpsLatParts[0].split('/')[0]) / parseInt(gpsLatParts[0].split('/')[1]);
           let gpsLatM = parseInt(gpsLatParts[1].split('/')[0]) / parseInt(gpsLatParts[1].split('/')[1]);
           let gpsLatS = parseInt(gpsLatParts[2].split('/')[0]) / parseInt(gpsLatParts[2].split('/')[1]);
           let gpsLat = gpsLatD + gpsLatM / 60 + gpsLatS / 3600;
           // console.log(gpsLatParts, gpsLatD, gpsLatM, gpsLatS);
 
-          const gpsAltParts = execSync(cmdAlt).toString().trim().split('/');
+          const gpsAltParts = gnssInfoParts[2].trim().split('/');
           let gpsAlt = parseInt(gpsAltParts[0]) / parseInt(gpsAltParts[1]);
           // console.log(gpsAltParts);
-          
+
           // console.log(jpgimgs[i], gpsLon, gpsLat, gpsAlt);
+          
+          if(isNaN(gpsLon) || isNaN(gpsLat) || isNaN(gpsAlt)) {
+            noGPSInfo.push(jpgimgs[i]);
+            continue;
+          }
 
           csvContent.push([
-              jpgimgs[i], 
-              gpsLon, gpsLat, gpsAlt,
-              0, 0, 0,
-              0, 0, 0
+            jpgimgs[i], 
+            gpsLon, gpsLat, gpsAlt,
+            0, 0, 0,
+            0, 0, 0
           ]);
-
-          if(gpsLon == undefined || gpsLat == undefined || gpsAlt == undefined) noGPSInfo.push(jpgimgs[i]);
-          
         } catch (e: any) {
           noGPSInfo.push(jpgimgs[i]);
-          // console.log(e.toString());
+          console.log(e.toString());
         }
       }
 
