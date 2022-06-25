@@ -7,6 +7,10 @@
 Download From
 https://github.com/gisnode/gnss-exifr/releases/download/add-replace-remove/exifr.1.0.0.exe
 
+### Install Modules for development
+```
+yarn install
+```
 
 ### Compiles and hot-reloads for development
 ```
