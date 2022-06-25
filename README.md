@@ -7,17 +7,19 @@
 Download From
 https://github.com/gisnode/gnss-exifr/releases/download/add-replace-remove/exifr.1.0.0.exe
 
-### Install Modules for development
+## Development uses Vue Framework and Electron-Builder
+
+### Install Modules for Development
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and hot-reloads for Development
 ```
 yarn electron:serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for Production
 ```
 yarn buildportable
 ```
