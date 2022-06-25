@@ -5,7 +5,7 @@
 3. Export GeoTag Information from Drone Imageries to CSV. (ImageName, Longitude, Latitude, Altitude)
 
 Download From
-https://github.com/gisnode/gnss-exifr/releases/download/add-replace-remove/exifr.1.0.0.exe
+https://github.com/gisnode/gnss-exifr/releases/download/portable/gnss-exifr.1.0.0.exe
 
 ## Dependencies
 ```
