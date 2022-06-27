@@ -6,6 +6,7 @@
 
 ## Prerequisites - Microsoft Visual C++ Redistributable
 https://github.com/gisnode/gnss-exifr/releases/download/prerequisites/VC_redist.x64.exe
+#### (Or) Download From https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist
 
 ## Download
 https://github.com/gisnode/gnss-exifr/releases/download/portable/gnss-exifr.1.0.0.exe
