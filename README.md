@@ -4,8 +4,7 @@
 2. Remove GeoTag Information from Drone Imageries completely.
 3. Export GeoTag Information from Drone Imageries to CSV. (ImageName, Longitude, Latitude, Altitude)
 
-## Prerequisites
-Microsoft Visual C++ Redistributable
+## Prerequisites - Microsoft Visual C++ Redistributable
 https://github.com/gisnode/gnss-exifr/releases/download/prerequisites/VC_redist.x64.exe
 
 ## Download
